@@ -62,18 +62,4 @@ exports.update_user = async (req, resp) => {
         areas: await getDataAreas(),
         subareas: await getDataSubAreas(),
     })
-
-
-    // await axios.get('http://localhost:3000/api/users', { params: { id: req.query.id } })
-    //     .then(response => {
-    //         resp.render('update_user', {
-    //             user: response.data,
-    //             // typeDocument: await getDataTypeDocuments(),
-    //             // areas: await getDataAreas(),
-    //             // subareas: await getDataSubAreas(),
-    //         })
-    //     })
-    //     .catch(err => {
-    //         resp.send(err);
-    //     });
 }
