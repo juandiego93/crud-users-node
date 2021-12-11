@@ -14,4 +14,10 @@ route.get('/api/users', controller.find)
 route.put('/api/users/:id', controller.update)
 route.delete('/api/users/:id', controller.delete)
 
+
+// Get Models
+route.get('/api/typeDocuments', controller.typeDocuments)
+route.get('/api/areas', controller.areas)
+route.get('/api/subareas', controller.subareas)
+
 module.exports = route

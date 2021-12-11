@@ -1,21 +1,29 @@
-var UserDb = require("../model/model")
+var methods = require("../model/model")
+var UserDb = methods.UserDb
 
 exports.create = (req, res) => {
     if (!req.body) {
         res.status(400).send({ message: 'Content can not be empty.' })
         return
     }
+    console.log(req.body)
 
     const user = new UserDb({
+
+        typeDocument: req.body.typeDocument,
+        document: req.body.document,
         name: req.body.name,
+        lastname: req.body.lastname,
+        document: req.body.document,
         email: req.body.email,
         gender: req.body.gender,
-        status: req.body.status
+        status: req.body.status,
+        area: req.body.area,
+        subarea: req.body.subarea,
     })
 
     user.save(user)
         .then((data) => {
-            // res.send(data)
             res.redirect('/add-user')
         })
         .catch(err => {
@@ -99,3 +107,9 @@ exports.delete = (req, res) => {
         })
 
 }
+
+exports.typeDocuments = (req, res) => {
+
+}
+exports.areas = (req, res) => { }
+exports.subareas = (req, res) => { }
