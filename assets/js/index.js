@@ -20,19 +20,22 @@ $('#update_user').submit(function (e) {
     })
 })
 
-if (window.location.pathname == '/') {
-    $ondelete = $('.table tbody td a.delete')
+if (window.location.pathname == "/") {
+    $ondelete = $(".table tbody td a.delete");
     $ondelete.click(function () {
-        var id = $this.attr('data-id')
+        var id = $(this).attr("data-id")
+
         var request = {
-            'url': 'http://localhost:3000/users/'.concat(id),
-            'method': 'DELETE',
+            "url": `http://localhost:3000/api/users/${id}`,
+            "method": "DELETE"
         }
 
-        if (confirm('Do you really want to delete this record ? '))
+        if (confirm("Do you really want to delete this record?")) {
             $.ajax(request).done(function (response) {
-                alert('Data deleted successfully')
-                location.reload()
+                alert("Data Deleted Successfully!");
+                location.reload();
             })
+        }
+
     })
 }
