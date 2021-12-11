@@ -1,12 +1,22 @@
+<!-- <ul>
+    <% for(var i=0; i<typeDocument.length; i++) { %>
+        <li>
+            <%= typeDocument[i].name %> , <%= typeDocument[i]._id %>
+        </li>
+
+        <% } %>
+</ul> -->
 <form id="add_user" method="POST" action="/api/users">
     <div class="new_user">
         <div class="form-group">
             <label for="typeDocument" class="text-light">Type Document</label>
             <select name="typeDocument">
                 <option value="" selected disabled hidden>Choose here</option>
-                <option value="cc">C.C.</option>
-                <option value="ti">T.I.</option>
-                <option value="ce">C.E.</option>
+                <% for(var i=0; i<typeDocument.length; i++) { %>
+                    <option value="<%= typeDocument[i]._id %>">
+                        <%= typeDocument[i].name %>
+                    </option>
+                    <% } %>
             </select>
         </div>
         <div class="form-group">
@@ -47,36 +57,33 @@
                 <input type="radio" name="status" value="Inactive" id="radio-s-2">
                 <label for="radio-s-2" class="radio-label">Inactive</label>
             </div>
-            <div class="form-group">
-                <label for="area" class="text-light">Area</label>
-                <select name="area">
-                    <option value="" selected disabled hidden>Choose here</option>
-                    <option value="administration">Administration</option>
-                    <option value="management">Management</option>
-                    <option value="Logistics">Logistics</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label for="subarea" class="text-light">Subarea</label>
-                <select name="subarea">
-                    <option value="" selected disabled hidden>Choose here</option>
-                    <option value="admin1">Admin 1</option>
-                    <option value="admin2">Admin 2</option>
-                    <option value="admin3">Admin 3</option>
-                    <option value="manag1">Manag 1</option>
-                    <option value="manag2">Manag 2</option>
-                    <option value="manag3">Manag 3</option>
-                    <option value="log1">Logist 1</option>
-                    <option value="log2">Logist 2</option>
-                    <option value="log3">Logist 3</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn text-dark update">
-                    Save
-                </button>
-            </div>
+        </div>
+        <div class="form-group">
+            <label for="area" class="text-light">Area</label>
+            <select name="area">
+                <option value="" selected disabled hidden>Choose here</option>
+                <% for(var i=0; i<areas.length; i++) { %>
+                    <option value="<%= areas[i]._id %>">
+                        <%= areas[i].name %>
+                    </option>
+                    <% } %>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="subarea" class="text-light">Subarea</label>
+            <select name="subarea">
+                <option value="" selected disabled hidden>Choose here</option>
+                <% for(var i=0; i<subareas.length; i++) { %>
+                    <option value="<%= subareas[i]._id %>">
+                        <%= subareas[i].name %>
+                    </option>
+                    <% } %>
+            </select>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn text-dark update">
+                Save
+            </button>
         </div>
     </div>
-
 </form>

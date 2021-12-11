@@ -126,4 +126,9 @@ var schema = new mongoose.Schema({
 
 const UserDb = mongoose.model('userdb', schema)
 
-module.exports = { 'UserDb': UserDb, 'typeDocument': typeDocument, 'areas': areas, 'subareas': subareas }
+module.exports = {
+    'UserDb': UserDb,
+    'typeDocument': typeDocument,
+    'areas': areas,
+    'subareas': subareas
+}

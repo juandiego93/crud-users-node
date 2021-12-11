@@ -1,6 +1,5 @@
 <!-- iclude header -->
 <%- include('include/_header') %>
-
     <main id="site-main">
         <div class="container">
             <div class="box-nav d-flex justify-between">
@@ -18,9 +17,34 @@
             <form id="update_user" method="POST">
                 <div class="new_user">
                     <div class="form-group">
+                        <label for="typeDocument" class="text-light">Type Document :: <%= user.typeDocument %> ::
+                        </label>
+                        <select name="typeDocument">
+                            <% for(var i=0; i<typeDocument.length; i++) { %>
+                                <% if(typeDocument[i]._id==user.typeDocument) { %>
+                                    <option value="<%= typeDocument[i]._id %>" selected>
+                                        <%= typeDocument[i].name %>
+                                    </option>
+                                    <% } else{ %>
+                                        <option value="<%= typeDocument[i]._id %>">
+                                            <%= typeDocument[i].name %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="document" class="text-light">Document</label>
+                        <input type="text" name="document" value="<%= user.document %>" placeholder="10555555">
+                    </div>
+                    <div class="form-group">
                         <label for="name" class="text-light">Name</label>
                         <input type="hidden" name="id" value="">
                         <input type="text" name="name" value="<%= user.name %>" placeholder="Juan Osorio">
+                    </div>
+                    <div class="form-group">
+                        <label for="lastname" class="text-light">Last Name</label>
+                        <input type="text" name="lastname" value="<%= user.lastname %>" placeholder="Osorio C.">
                     </div>
                     <div class="form-group">
                         <label for="email" class="text-light">Email</label>
@@ -29,32 +53,67 @@
                     <div class="form-group">
                         <label for="gender" class="text-light">Gender</label>
                         <div class="radio inline">
-                            <input type="radio" name="gender" value="Male" id="radio-g-m" <%= user.gender == 'Male' ? 'checked' : '' %>>
+                            <input type="radio" name="gender" value="Male" id="radio-g-m" <%=user.gender=='Male'
+                                ? 'checked' : '' %>>
                             <label for="radio-g-m" class="radio-label">Male</label>
                         </div>
                         <div class="radio inline">
-                            <input type="radio" name="gender" value="Female" id="radio-g-f" <%= user.gender == 'Femaale' ? 'checked' : '' %>>
+                            <input type="radio" name="gender" value="Female" id="radio-g-f" <%=user.gender=='Femaale'
+                                ? 'checked' : '' %>>
                             <label for="radio-g-f" class="radio-label">Female</label>
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="status" class="text-light">Status</label>
                         <div class="radio inline">
-                            <input type="radio" name="gender" value="Active" id="radio-s-1" <%= user.gender == 'Active' ? 'checked' : '' %>>
+                            <input type="radio" name="gender" value="Active" id="radio-s-1" <%=user.gender=='Active'
+                                ? 'checked' : '' %>>
                             <label for="radio-s-1" class="radio-label">Active</label>
                         </div>
                         <div class="radio inline">
-                            <input type="radio" name="gender" value="Inactive" id="radio-s-2" <%= user.gender == 'Inactive' ? 'checked' : '' %>>
+                            <input type="radio" name="gender" value="Inactive" id="radio-s-2" <%=user.gender=='Inactive'
+                                ? 'checked' : '' %>>
                             <label for="radio-s-2" class="radio-label">Inactive</label>
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="btn text-dark update">
-                                Update User
-                            </button>
-                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="area" class="text-light">Area</label>
+                        <select name="areas">
+                            <% for(var i=0; i<areas.length; i++) { %>
+                                <% if(areas[i]._id==user.area) { %>
+                                    <option value="<%= areas[i]._id %>" selected>
+                                        <%= areas[i].name %>
+                                    </option>
+                                    <% } else{ %>
+                                        <option value="<%= areas[i]._id %>">
+                                            <%= areas[i].name %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="subarea" class="text-light">Subarea</label>
+                        <select name="subareas">
+                            <% for(var i=0; i<subareas.length; i++) { %>
+                                <% if(subareas[i]._id==user.subarea) { %>
+                                    <option value="<%= subareas[i]._id %>" selected>
+                                        <%= subareas[i].name %>
+                                    </option>
+                                    <% } else{ %>
+                                        <option value="<%= subareas[i]._id %>">
+                                            <%= subareas[i].name %>
+                                        </option>
+                                        <% } %>
+                                            <% } %>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn text-dark update">
+                            Update User
+                        </button>
                     </div>
                 </div>
-
             </form>
         </div>
     </main>

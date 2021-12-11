@@ -10,55 +10,70 @@ exports.homeRoutes = (req, resp) => {
         });
 }
 
-exports.add_user = (req, resp) => {
+exports.add_user = async (req, resp) => {
 
-    var typeDocument = []
-    var areas = []
-    var subareas = []
+    const getDataTypeDocuments = async () => {
+        const { data } = await axios.get("http://localhost:3000/api/typeDocuments");
+        return data
+    }
 
-    axios.get('http://localhost:3000/api/typeDocuments')
-        .then(response => {
-            typeDocument = response.data
-        })
-        .catch(err => {
-            res.send(err);
-        });
+    const getDataAreas = async () => {
+        const { data } = await axios.get("http://localhost:3000/api/areas");
+        return data
+    }
 
-    axios.get('http://localhost:3000/api/areas')
-        .then(response => {
-            areas = response.data
-        })
-        .catch(err => {
-            res.send(err);
-        });
-
-    axios.get('http://localhost:3000/api/subareas')
-        .then(response => {
-            subareas = response.data
-        })
-        .catch(err => {
-            res.send(err);
-        });
+    const getDataSubAreas = async () => {
+        const { data } = await axios.get("http://localhost:3000/api/subareas");
+        return data
+    }
 
     resp.render('add_user', {
-        typeDocument: typeDocument,
-        areas: areas,
-        subareas: subareas,
+        typeDocument: await getDataTypeDocuments(),
+        areas: await getDataAreas(),
+        subareas: await getDataSubAreas(),
     })
 }
 
-exports.update_user = (req, resp) => {
-    axios.get('http://localhost:3000/api/users',
-        {
-            params:
-            {
-                id: req.query.id
-            }
-        })
-        .then(response => {
-            resp.render('update_user', { user: response.data })
-        })
-        .catch(err => {
-            resp.send(err);
-        });
+exports.update_user = async (req, resp) => {
+
+    const getDataTypeDocuments = async () => {
+        const { data } = await axios.get("http://localhost:3000/api/typeDocuments");
+        return data
+    }
+
+    const getDataAreas = async () => {
+        const { data } = await axios.get("http://localhost:3000/api/areas");
+        return data
+    }
+
+    const getDataSubAreas = async () => {
+        const { data } = await axios.get("http://localhost:3000/api/subareas");
+        return data
+    }
+
+    const getDataUserById = async () => {
+        const { data } = await axios.get('http://localhost:3000/api/users', { params: { id: req.query.id } })
+        return data
+    }
+
+    resp.render('update_user', {
+        user: await getDataUserById(),
+        typeDocument: await getDataTypeDocuments(),
+        areas: await getDataAreas(),
+        subareas: await getDataSubAreas(),
+    })
+
+
+    // await axios.get('http://localhost:3000/api/users', { params: { id: req.query.id } })
+    //     .then(response => {
+    //         resp.render('update_user', {
+    //             user: response.data,
+    //             // typeDocument: await getDataTypeDocuments(),
+    //             // areas: await getDataAreas(),
+    //             // subareas: await getDataSubAreas(),
+    //         })
+    //     })
+    //     .catch(err => {
+    //         resp.send(err);
+    //     });
 }
