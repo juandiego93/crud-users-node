@@ -17,8 +17,7 @@
             <form id="update_user" method="POST">
                 <div class="new_user">
                     <div class="form-group">
-                        <label for="typeDocument" class="text-light">Type Document :: <%= user.typeDocument %> ::
-                        </label>
+                        <label for="typeDocument" class="text-light">Type Document </label>
                         <select name="typeDocument">
                             <% for(var i=0; i<typeDocument.length; i++) { %>
                                 <% if(typeDocument[i]._id==user.typeDocument) { %>
