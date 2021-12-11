@@ -11,7 +11,40 @@ exports.homeRoutes = (req, resp) => {
 }
 
 exports.add_user = (req, resp) => {
-    resp.render('add_user')
+
+    var typeDocument = []
+    var areas = []
+    var subareas = []
+
+    axios.get('http://localhost:3000/api/typeDocuments')
+        .then(response => {
+            typeDocument = response.data
+        })
+        .catch(err => {
+            res.send(err);
+        });
+
+    axios.get('http://localhost:3000/api/areas')
+        .then(response => {
+            areas = response.data
+        })
+        .catch(err => {
+            res.send(err);
+        });
+
+    axios.get('http://localhost:3000/api/subareas')
+        .then(response => {
+            subareas = response.data
+        })
+        .catch(err => {
+            res.send(err);
+        });
+
+    resp.render('add_user', {
+        typeDocument: typeDocument,
+        areas: areas,
+        subareas: subareas,
+    })
 }
 
 exports.update_user = (req, resp) => {

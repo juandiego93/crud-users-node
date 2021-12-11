@@ -18,11 +18,13 @@ var arrayDataTypeDocuments = [
     { name: 'Cedula de extranjeria' },
 ]
 
-P.all(arrayDataTypeDocuments.map((i) => new typeDocument(i).save()))
-    .then((data) => console.log('Data: '.concat(data)))
-    .catch((err) => console.log('Error '.concat(err)))
-    .finally(process.exit)
-
+typeDocument.countDocuments({}, (err, count) => {
+    if (count == 0) {
+        arrayDataTypeDocuments.forEach((value, index) => {
+            new typeDocument(value).save()
+        })
+    }
+})
 //Finish Types documents
 
 //Init Areas
@@ -43,11 +45,13 @@ var arrayDataAreas = [
     { name: 'Investigacion' },
 ]
 
-P.all(arrayDataAreas.map((i) => new areas(i).save()))
-    .then((data) => console.log('Data: '.concat(data)))
-    .catch((err) => console.log('Error '.concat(err)))
-    .finally(process.exit)
-
+areas.countDocuments({}, (err, count) => {
+    if (count == 0) {
+        arrayDataAreas.forEach((value, index) => {
+            new areas(value).save()
+        })
+    }
+})
 //Finish Areas
 
 //Init SubAreas
@@ -73,15 +77,17 @@ var arrayDataSubAreas = [
     { name: 'I1' },
     { name: 'I2' },
     { name: 'I3' },
+
 ]
 
-P.all(arrayDataSubAreas.map((i) => new subareas(i).save()))
-    .then((data) => console.log('Data: '.concat(data)))
-    .catch((err) => console.log('Error '.concat(err)))
-    .finally(process.exit)
-
+subareas.countDocuments({}, (err, count) => {
+    if (count == 0) {
+        arrayDataSubAreas.forEach((value, index) => {
+            new subareas(value).save()
+        })
+    }
+})
 //Finish SubAreas
-
 
 var schema = new mongoose.Schema({
     typeDocument: {

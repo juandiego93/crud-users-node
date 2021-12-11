@@ -1,12 +1,14 @@
 var methods = require("../model/model")
 var UserDb = methods.UserDb
+var TypeDocuments = methods.typeDocument
+var Areas = methods.areas
+var SubAreas = methods.subareas
 
 exports.create = (req, res) => {
     if (!req.body) {
         res.status(400).send({ message: 'Content can not be empty.' })
         return
     }
-    console.log(req.body)
 
     const user = new UserDb({
 
@@ -70,7 +72,6 @@ exports.update = (req, res) => {
     }
 
     const id = req.params.id
-    console.log(id);
     UserDb.findByIdAndUpdate(id, req.body, { useFindAndModify: false })
         .then((data) => {
             if (!data) {
@@ -109,7 +110,37 @@ exports.delete = (req, res) => {
 }
 
 exports.typeDocuments = (req, res) => {
-
+    TypeDocuments.find()
+        .then(arrayTypesDocuments => {
+            res.send(arrayTypesDocuments)
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || 'Some error ocurred while retriving type documents info'
+            })
+        })
 }
-exports.areas = (req, res) => { }
-exports.subareas = (req, res) => { }
+
+exports.areas = (req, res) => {
+    Areas.find()
+        .then(arrayAreas => {
+            res.send(arrayAreas)
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || 'Some error ocurred while retriving Areas info'
+            })
+        })
+}
+
+exports.subareas = (req, res) => {
+    SubAreas.find()
+        .then(arraySubAreas => {
+            res.send(arraySubAreas)
+        })
+        .catch(err => {
+            res.status(500).send({
+                message: err.message || 'Some error ocurred while retriving Subareas info'
+            })
+        })
+}

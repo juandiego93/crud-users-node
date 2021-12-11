@@ -9,8 +9,6 @@ $('#update_user').submit(function (e) {
     $.map(unindexed_array, function (n, i) {
         data[n['name']] = n['value']
     })
-    console.log(unindexed_array);
-
     var request = {
         'url': 'http://localhost:3000/users/'.concat(data.id),
         'method': 'PUT',
