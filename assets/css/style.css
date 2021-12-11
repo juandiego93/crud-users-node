@@ -159,9 +159,11 @@ table {
 }
 
 #update_user .form-group input[type="text"],
+#update_user .form-group input[type="email"],
 #update_user .form-group select,
 #add_user .form-group select,
-#add_user .form-group input[type="text"] {
+#add_user .form-group input[type="text"],
+#add_user .form-group input[type="email"] {
     width: 100%;
     padding: .6em 1em;
     margin: .5em 0;
